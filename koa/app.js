@@ -1,13 +1,11 @@
 const Koa = require('koa');
-const router = require('./router')
-const routerInterceptor = require('./middlewares/interceptor');
+const { init } = require('./middlewares');
 
 const app = new Koa();
 
-routerInterceptor(app);
-app.use(router.routes()).use(router.allowedMethods());
+init(app);
 
 const port = 3000
-app.listen(port,()=>{
-    console.log(`Server is running at http://${port}`)
+app.listen(port, () => {
+    console.log(`Server is running at http://localhost:${port}`)
 })

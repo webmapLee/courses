@@ -1,8 +1,9 @@
-const routerInterceptor = (app) => {
-    app.use(async (ctx,next) => {
-        console.log('我拦截的地址', ctx.request.path);
+const interceptor = (app) => {
+    app.use(async (ctx, next) => {
         await next();
-        ctx.body = '我拦截了一个地址 😂😂😂😂😂'
+        if (!ctx.body) {
+            ctx.body = '404'
+        }
     })
 }
-module.exports = routerInterceptor;
+module.exports = interceptor;
