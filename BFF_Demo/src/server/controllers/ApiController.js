@@ -3,7 +3,7 @@ import Controller from './Controller.js';
 class ApiController extends Controller {
     async actionBookList(ctx, next) {
         await next();
-        throw new Error('这是一个错误❌！');
+        // throw new Error('这是一个错误❌！');
         ctx.body = {
             code: 0,
             data: [

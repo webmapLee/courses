@@ -61,9 +61,32 @@ js: 如果需要打包为 System.js 直接配置 swc，不需要再单独装包
 - 改为 ESM 模块后，第三方 commonjs 模块处理
 - html 打包目录问题
 - 将 node 打包成 common.js 后，ESM 环境（type: “module”）下无法启动打包后的 node 的服务
+- node 源码启动服务，代码中 views、components 等页面组件相关的 js,css 无法作为静态资源进行引用
 
-### 13.前后端路由
+解决打包后项目启动问题
 
-### 14.开发调试
+### 13\. 工程优化
+
+通过名称来插入 js 和 css
+
+命令 scripty npm-run-all
+
+重复代码 jscpd
+
+tree-shaking，环境变量判断相关代码删除（gulp-replace）
+
+yargv 取环境变量
+
+glob 匹配文件
+
+layouts
+
+热更新 gulp-watch hmr
+
+prepack
+
+### 14.前后端路由
+
+vue-router
 
 ### 15.单测

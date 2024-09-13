@@ -14,7 +14,8 @@ import postcssNested from 'postcss-nested';
 import postcssReporter from 'postcss-reporter';
 import cssnano from 'cssnano';
 import htmlmin from 'gulp-htmlmin';
-
+import rename from 'gulp-rename';
+import replace from 'gulp-replace';
 
 const isProduction = process.env.NODE_ENV === 'production';
 const mainPath = './src/server/**/'
@@ -38,12 +39,23 @@ const getMainJsPaths = (dirs) => {
 gulp.task('main', () => {
     const mainPaths = getMainJsPaths([mainPath])
     return gulp.src(mainPaths)
+        .pipe(replace(/from\s+'(.+?)\.js'/g, "from '$1.cjs'"))
         .pipe(swc({
             module: {
-                type: 'es6'
+                type: 'commonjs'
             }
         }))
+        // .pipe(replace(/require\('(.+?)\.js'\)/g, "require('$1.cjs')"))
+        .pipe(rename({
+            extname: '.cjs'
+        }))
         .pipe(gulpIf(isProduction, uglify()))
+        .pipe(gulp.dest(destDir))
+})
+
+gulp.task("package", () => {
+    return gulp.src("./package.json")
+        .pipe(replace(/"type":\s*"module"/, '"type": "commonjs"'))
         .pipe(gulp.dest(destDir))
 })
 
@@ -115,4 +127,4 @@ gulp.task('assets', () => {
 
 gulp.task('views', gulp.series(['views_js', 'views_css', 'views_html']))
 
-gulp.task('build', gulp.series(['clean', 'main', 'views', 'assets']))
+gulp.task('build', gulp.series(['clean', 'main', 'views', 'assets', 'package']))

@@ -14,3 +14,7 @@
     at actionBookList (/Users/liyb/Desktop/课件/courses/BFF_Demo/src/server/controllers/ApiController.js:6:15)
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
     at async /Users/liyb/Desktop/课件/courses/BFF_Demo/src/server/middlewares/ErrorHandler.js:5:17
+[2024-08-19T21:02:38.955] [ERROR] default - Error: 这是一个错误❌！
+    at actionBookList (file:///Users/liyb/Desktop/%E8%AF%BE%E4%BB%B6/courses/BFF_Demo/src/server/controllers/ApiController.js:6:15)
+    at async serve (/Users/liyb/node_modules/.pnpm/koa-static@5.0.0/node_modules/koa-static/index.js:53:9)
+    at async file:///Users/liyb/Desktop/%E8%AF%BE%E4%BB%B6/courses/BFF_Demo/src/server/middlewares/ErrorHandler.js:5:17

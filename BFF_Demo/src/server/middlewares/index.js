@@ -4,7 +4,6 @@ import getNodeLogger from '../utils/log.js';
 import config from '../config/index.js';
 import ErrorHandler from './ErrorHandler.js';
 
-
 const initMiddlewares = (app) => {
     app.use(historyApiFallback({
         whiteList: config.whiteList
